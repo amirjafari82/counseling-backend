@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     #local apps
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
+    'contactus.apps.ContactusConfig',
+    #third party apps
+    'django_jalali',
 ]
 
 MIDDLEWARE = [
