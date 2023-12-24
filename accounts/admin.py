@@ -10,14 +10,14 @@ from .models import User, Profile
 
 class UserCreationForm(forms.ModelForm):
     
-    password1 = forms.CharField(label="رمز عبور", widget=forms.PasswordInput)
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(
-        label="تایید رمز عبور", widget=forms.PasswordInput
+        label="Confirm Password", widget=forms.PasswordInput
     )
 
     class Meta:
         model = User
-        fields = ["phone", "first_name", "last_name"]
+        fields = ["phone", "first_name", "last_name", "is_admin"]
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -40,7 +40,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["phone", "password", "first_name", "last_name"]
+        fields = ["phone", "password", "first_name", "last_name", "is_admin"]
 
 
 class UserAdmin(BaseUserAdmin):
