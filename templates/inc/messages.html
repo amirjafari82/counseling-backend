@@ -1,0 +1,9 @@
+{% if messages %}
+  {% for msg in messages %}
+    {% if msg.tags == "danger error" %}
+      <p class="alert alert-{{ msg.tags }}"><i class='bx bxs-error-circle' ></i>{{ msg }}</p>
+    {% elif msg.tags == "success success" %}
+      <p class="alert alert-{{ msg.tags }}"><i class='bx bx-check' ></i>{{ msg }}</p>
+    {% endif %}
+ {% endfor %}
+{% endif %}
