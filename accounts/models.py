@@ -5,7 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 class UserManager(BaseUserManager):
     def create_user(self, phone, first_name, last_name, password=None):
         if not phone:
-            raise ValueError("Users must have an email address")
+            raise ValueError("Users must have a phonenumber")
 
         user = self.model(
             phone=phone,
@@ -43,8 +43,8 @@ class User(AbstractBaseUser):
         verbose_name='Last Name',
         max_length=20
     )
+
     is_active = models.BooleanField(default=True)
-    is_vip = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
@@ -68,5 +68,11 @@ class User(AbstractBaseUser):
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
-    age = models.PositiveSmallIntegerField(default=0)
-    bio = models.TextField(null=True, blank=True)
+    age = models.CharField(
+        verbose_name='Age',
+        max_length=3
+    )
+    gender = models.CharField(
+        verbose_name='Gender',
+        max_length=10
+    )
