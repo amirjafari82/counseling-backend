@@ -9,6 +9,8 @@
     <!-- Slick library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
     <!-- End of Slick library -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/8ef41f6dc0.js" crossorigin="anonymous"></script>
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
@@ -19,7 +21,8 @@
     {% block content %} {% endblock %}
 
     {% include 'inc/footer.html' %}
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
     
 </body>

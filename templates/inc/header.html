@@ -1,3 +1,4 @@
+{% load static %}
 <header class="main-header">
     <div class="main-header-content">
         <div id="menu-bar" class="burger-bg" onclick="menuOnClick()">
@@ -7,7 +8,7 @@
         </div>
         <div class="main-header-logo-container">
             <a href="#"><img id="logo" class="main-header-logo-img"
-                    src="/Assets/Images/Ros-Logo.png" alt>
+                    src="{% static 'images/Ros-Logo.png' %}" alt>
             </a>
         </div>
         <nav class="nav" id="nav">
