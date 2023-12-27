@@ -13,7 +13,7 @@
         </div>
         <nav class="nav" id="nav">
             <ul class="main-header-menu-container">
-                <a class="menuItem" href="#">
+                <a class="menuItem" href="{% url 'home:home' %}">
                     <li>صفحه اصلی</li>
                 </a>
                 <a class="menuItem" href="{% url 'contact-us:contact-us' %}">
@@ -22,7 +22,7 @@
                 <a class="menuItem" href="#">
                     <li>درباره ما</li>
                 </a>
-                <a class="menuItem" href="#">
+                <a class="menuItem" href="{% url 'weblog:blog' 1 %}">
                     <li>بلاگ</li>
                 </a>
                 <a class="menuItem" href="#">

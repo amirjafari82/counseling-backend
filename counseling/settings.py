@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
     'contactus.apps.ContactusConfig',
+    'weblog.apps.WeblogConfig',
     #third party apps
     'django_jalali',
 ]
@@ -130,7 +131,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/"
 MEDIA_ROOT = BASE_DIR / ""
 
 # Default primary key field type
