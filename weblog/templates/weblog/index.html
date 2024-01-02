@@ -304,7 +304,7 @@
         </div>
         <div class="blog-page-popular-post-slider-container">
             {% for article in top_articles|slice:"3" %}
-                <a href="#" class="post-link">
+                <a href="{% url 'weblog:article' article.slug %}" class="post-link">
                     <div class="blog-page-post-card">
                         <div class="post-card-svg-container">
                             <img src="{{ article.image.url }}" alt="">
@@ -333,14 +333,15 @@
         </div>
         <div class="recent-post-card-container">
             {% for article in page_obj %}
-                <a href="#" class="post-link">
+                <a href="{% url 'weblog:article' article.slug %}" class="post-link">
                     <div class="blog-page-post-card">
                         <div class="post-card-svg-container">
                             <img src="{{ article.image.url }}" alt="">
                         </div>
                         <div class="post-card-release-time">
                             <h4> 
-                                <span class="day">{{article.created|jformat:"%A"}}</span> {{article.created|jformat:"%d"}} <span class="month">{{article.created|jformat:"%B"}}</span> {{article.created|jformat:"%Y"}} - {{article.created|jformat:"%H:%M"}} </h4>
+                                <span class="day">{{article.created|jformat:"%A"}}</span> {{article.created|jformat:"%d"}} <span class="month">{{article.created|jformat:"%B"}}</span> {{article.created|jformat:"%Y"}} - {{article.created|jformat:"%H:%M"}}
+                            </h4>
                         </div>
                         <div class="post-card-title">
                             <h3> {{article.title}} </h3>

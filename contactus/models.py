@@ -12,6 +12,6 @@ class Contact(models.Model):
     last_name = models.CharField(verbose_name="Last Name",max_length=20)
     phone = models.CharField(verbose_name="Last Name",max_length=11)
     email = models.EmailField(verbose_name="Email",max_length=100)
-    desc = models.TextField(verbose_name="Description")
+    desc = models.TextField(verbose_name="Description",blank=True,null=True)
     situation = models.CharField(max_length=30,choices=SITUATION_CHOICES,default='Pending')
     created = jmodels.jDateTimeField(auto_now_add=True,blank=True,null=True)
