@@ -11,32 +11,38 @@ function menuOnClick() {
 
 // swiper slider 
 
-var swiper = new Swiper('.mySwiper', {
-    slidesPerView: 2,
-    autoplay: {
-        delay: 2500,
-    },
-    spaceBetween: 10,
-    grabCursor: true,
-    rewind: true,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        pervEl: '.swiper-button-perv',
-    },
-    breakpoints: {
-        270: {
-            slidesPerView: 1,
+const mySwiper = document.querySelector(".mySwiper");
+
+if (mySwiper) {
+    var swiper = new Swiper('.mySwiper', {
+        slidesPerView: 2,
+        autoplay: {
+            delay: 2500,
         },
-        599: {
-            slidesPerView: 2,
-            spaceBetween: 20,
+        spaceBetween: 10,
+        grabCursor: true,
+        rewind: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            pervEl: '.swiper-button-perv',
         },
-        992: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-        },
-    }
-})
+        breakpoints: {
+            270: {
+                slidesPerView: 1,
+            },
+            599: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            992: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            },
+        }
+    })
+}
+
+
 
 // Slider functionality
 
@@ -81,6 +87,50 @@ setInterval (nextSlide, 5000);
 if (btnRight || btnLeft) {
     btnRight.addEventListener('click', nextSlide);
     btnLeft.addEventListener('click', prevSlide);
+}
+
+
+// Remember me functionality
+
+const rmCheck = document.getElementById("rememberMe");
+const numberInput = document.getElementById("phoneNumber");
+const rememberMeLabel = document.getElementById("rememberMeLabel");
+
+if(rmCheck) {
+    if (localStorage.checkbox && localStorage.checkbox !== "") {
+        rmCheck.setAttribute("checked", "checked");
+        numberInput.value = localStorage.username;
+      } else {
+        rmCheck.removeAttribute("checked");
+        numberInput.value = "";
+    }
+    
+    function lsRememberMe() {
+        if (rmCheck.checked && numberInput.value !== "") {
+          localStorage.username = numberInput.value;
+          localStorage.checkbox = rmCheck.value;
+        } else {
+          localStorage.username = "";
+          localStorage.checkbox = "";
+        }
+    }
+}
+
+// visible password functionality 
+
+const togglePassword = document.querySelector("#togglePassword");
+const password = document.querySelector("#password");
+
+if (togglePassword) {
+    togglePassword.addEventListener("click", function () {
+        // toggle the type attribute 
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+    
+        // toggle the icon
+        this.classList.toggle("bi-eye");
+        password.focus()
+    })
 }
 
 $(".alert").delay(5000).fadeOut('fast');
