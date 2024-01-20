@@ -23,9 +23,9 @@
   src: url(../font/DanaFaNum-DemiBold.ttf);
   src: url(../font/DanaFaNum-Medium.ttf);
   src: url(../font/DanaFaNum-Regular.ttf);
-  src: url(../font/DanaFaNum-DemiBold.ttf);
-  src: url(../font/DanaFaNum-Medium.ttf);
-  src: url(../font/DanaFaNum-Regular.ttf);
+  src: url(/Assets/Font/DanaFaNum-DemiBold.ttf);
+  src: url(/Assets/Font/DanaFaNum-Medium.ttf);
+  src: url(/Assets/Font/DanaFaNum-Regular.ttf);
 }
 * {
   direction: rtl;
@@ -37,7 +37,7 @@
 }
 body {
   background-image: url(../images/Background-Home-page.svg);
-  background-image: url(../images/Background-Home-page.svg);
+  background-image: url(/Assets/Images/Background-Home-page.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -251,6 +251,116 @@ color: var(--textColor1-color);
 background: linear-gradient(90deg, var(--lighterBlue-color) 0%, var(--darkerBlue-color) 100%, var(--darkerBlue-color) 100%);
 }
 
+/* user header style */
+
+.user-header-my-account {
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+font-size: 1.3vw;
+display: flex;
+padding: 8px;
+justify-content: center;
+align-items: center;
+border: none;
+color: white;
+border-radius: 8px;
+background: var(--lighterBlue2-color);
+border: 3px dashed var(--lighterBlue2-color);
+transition: all 0.3s ease-in-out;
+}
+.user-header-my-account:hover {
+background-color: transparent;
+color: var(--textColor1-color);
+}
+
+.user-header-dropdown {
+display: inline-block;
+position: relative;
+}
+.user-header-dropdown ul {
+list-style-type: none;
+display: block;
+margin-top: 4px;
+padding: 0;
+position: absolute;
+width: 100%;
+overflow: hidden;
+box-shadow: 0 0px 8px 0px rgba(81, 119, 255, 0.40);
+background-color: var(--blogPostBackground-color);
+border-radius: 8px;
+}
+.user-header-dropdown li {
+height: 0;
+width: 100%;
+overflow: hidden;
+transition: all 500ms ease-in-out;
+background-color: var(--blogPostBackground-color);
+}
+
+.user-header-dropdown form {
+height: 0;
+width: 100%;
+overflow: hidden;
+transition: all 500ms ease-in-out;
+background-color: var(--blogPostBackground-color);
+}
+
+.user-header-dropdown li a {
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100%;
+}
+.user-header-dropdown.hover li {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.user-header-dropdown.hover form {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.user-header-dropdown.hover input {
+background-color: inherit;
+border: none;
+color: var(--textColor1-color);
+font-size: inherit;
+}
+.user-header-dropdown.hover form:hover {
+background-color: var(--blogPostHover-color);
+cursor: pointer;
+}
+.user-header-dropdown.hover form:hover input {
+color: #ff4b2b;
+}
+.user-header-dropdown.hover input:hover {
+cursor: pointer;
+color: #ff4b2b;
+}
+
+.user-header-dropdown a {
+color: var(--textColor2-color);
+font-size: 1.3vw;
+}
+.user-header-dropdown a:hover {
+color: var(--darkerBlue-color);
+}
+
+.user-header-dropdown.hover:hover li {
+height: 56px;
+}
+.user-header-dropdown.hover:hover form {
+height: 56px;
+}
+.user-header-dropdown.hover:hover li:hover {
+background-color: var(--blogPostHover-color);
+}
+
 .main-header-menu-container li:hover {
 color: var(--Yellow-color);
 border-bottom: 3px dashed var(--Yellow-color);
@@ -281,10 +391,20 @@ display: none;
   width: 80px;
   height: 80px;
 }
+.user-header-dropdown a {
+  font-size: 1.4vw;
+}
+.user-header-dropdown.hover input {
+  font-size: 1.4vw;
+}
 }
 
 @media only screen and (max-width: 768px) {
 .main-header-login-btn {
+  font-size: 1.7vw;
+  padding: 4px;
+}
+.user-header-my-account {
   font-size: 1.7vw;
   padding: 4px;
 }
@@ -302,6 +422,12 @@ display: none;
   width: 50px;
   height: 50px;
 }
+.user-header-dropdown a {
+  font-size: 1.6vw;
+}
+.user-header-dropdown.hover input {
+  font-size: 1.6vw;
+}
 }
 
 @media only screen and (max-width: 576px) {
@@ -314,7 +440,16 @@ display: none;
   font-size: 3.3vw;
   padding: 8px;
 }
-
+.user-header-my-account {
+  font-size: 3.3vw;
+  padding: 8px;
+}
+.user-header-dropdown a {
+  font-size: 3.3vw;
+}
+.user-header-dropdown.hover input {
+  font-size: 3.3vw;
+}
 /* Styling responsive menu */
 
 .main-header-menu-container {

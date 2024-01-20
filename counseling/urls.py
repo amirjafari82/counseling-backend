@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('home.urls',namespace='home')),
     path('contact-us/',include('contactus.urls',namespace='contact-us')),
     path('blog/',include('weblog.urls',namespace='webblog')),
-    path('accounts/',include('accounts.urls',namespace='accounts')),
+    path('amir/',include('accounts.urls',namespace='accounts')),
 ]

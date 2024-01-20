@@ -27,6 +27,9 @@ class SignupView(View):
             new_user = User.objects.create_user(phone=phone,first_name=first_name,last_name=last_name,password=password)
             messages.success(request,'حساب شما با موفقیت ساخته شد','success')
             return redirect('accounts:login')
+        else:
+            messages.error(request,'این شماره قبلا ثبت شده است','danger')
+            return redirect('accounts:signup')
         
 class LoginView(View):
     form_class = LoginForm
@@ -51,10 +54,10 @@ class LoginView(View):
                 return redirect('accounts:login')
         return redirect('home:home')
     
-# class UserLogout(LogoutView):
-#     next_page = reverse_lazy('home:home')
+class UserLogout(LogoutView):
+    next_page = reverse_lazy('home:home')
     
-#     def dispatch(self, request, *args, **kwargs):
-#         if request.user.is_authenticated:
-#             messages.success(request,'خارج شدید','success')
-#         return super().dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            messages.success(request,'خارج شدید','success')
+        return super().dispatch(request, *args, **kwargs)

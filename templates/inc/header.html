@@ -31,10 +31,27 @@
             </ul>
         </nav>
         <div class="menu-bg" id="menu-bg"></div>
-        <div class="main-header-login-btn-container">
-            <a href="{% url 'accounts:signup' %}"><span class="main-header-login-btn">ورود / ثبت
-                    نام</span>
-            </a>
-        </div>
+        {% if request.user.is_authenticated %}
+            <div class="user-header-dropdown hover">
+                <a href="#"><span class="user-header-my-account">حساب کاربری من</span>
+                </a>
+                <ul>
+                    <li><a href="#">پیشخوان</a></li>
+                    <li><a href="#">سفارش ها</a></li>
+                    <li><a href="#">جزئیات حساب</a></li>
+                    <li><a href="#">تیکت های پشتیبانی</a></li>
+                    <form method="post" action="{% url 'accounts:logout' %}">
+                        {% csrf_token %}
+                        <input type="submit" value="خروج از حساب">
+                    </form>
+                  </ul>
+            </div>
+        {% else %}
+            <div class="main-header-login-btn-container">
+                <a href="{% url 'accounts:signup' %}"><span class="main-header-login-btn">ورود / ثبت
+                        نام</span>
+                </a>
+            </div>
+        {% endif %}
     </div>
 </header>
