@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     #local apps
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
     'contactus.apps.ContactusConfig',
     'weblog.apps.WeblogConfig',
+    'course.apps.CourseConfig',
     #third party apps
     'django_jalali',
 ]
