@@ -21,6 +21,7 @@ class Teacher(models.Model):
     
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES,max_length=50)
+    active = models.BooleanField(default=False)
     
     def __str__(self):
         if self.name == 'Men':
@@ -40,4 +41,7 @@ class Course(models.Model):
     desc = models.TextField()
     fewdesc = models.TextField(default=None)
     price = models.IntegerField(default=0)
+    time = models.IntegerField(default=0)
+    students = models.IntegerField(default=0)
+    sessions = models.IntegerField(default=0)
     created = jmodels.jDateTimeField(auto_now_add=True,blank=True,null=True)

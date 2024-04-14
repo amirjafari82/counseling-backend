@@ -9,6 +9,7 @@ class CourseList(View):
     
     def get(self,request,page):
         category = self.request.GET.get('category')
+        print(category)
         if category:
             courses = Course.objects.filter(category__name=category)
         courses = Course.objects.all()
@@ -16,6 +17,17 @@ class CourseList(View):
         page_obj = paginator.get_page(page)
         categories = Category.objects.all()
         return render(request,'course/course-list.html',{'page_obj':page_obj,'categories':categories})
+    
+
+class CategoryFilterView(View):
+    
+    def get(self,request,page,category):
+        categories = Category.objects.all()
+        category_ins = Category.objects.get(name=category)
+        courses = Course.objects.filter(category=category_ins.pk)
+        paginator = Paginator(courses,per_page=6)
+        page_obj = paginator.get_page(page)
+        return render(request,'course/course-list.html',{'page_obj':page_obj,'categories':categories,'category_ins':category_ins})
     
 
 class CourseDetailView(View):

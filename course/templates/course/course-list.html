@@ -196,15 +196,26 @@
 
 <section id="course-list-category-section">
     <div class="course-list-category-container">
-        
             {% for category in categories %}
-                <a href="/course/{{page_number}}/?category={{category.name}}">
+                <a href="{% url 'course:course-filter' page_obj.number category.name %}">
                     <div class="course-list-category-box">
                     </div>
                 </a>
             {% endfor %}
     </div>
 </section>
+
+<div style="text-align: center;">
+    <h2>
+        {% if category_ins.name == 'Men' %}
+            مشاوره آقایان
+        {% elif category_ins.name == 'Couples' %}
+            مشاوره روابط زوجین
+        {% elif category_ins.name == 'Women' %}
+            مشاوره خانم ها
+        {% endif %}
+    </h2>
+</div>
 
 <section id="course-list-page-course-list">
     <div class="course-list-container">
@@ -237,7 +248,11 @@
         {% for page_number in page_obj.paginator.page_range %}
             <div class="pagination-number">
                 <a
-                href="{% url 'course:course-list' page_number %}"
+                {% if category_ins.active %}
+                    href="{% url 'course:course-list' page_number %}"
+                {% else %}
+                    href="{% url 'course:course-filter' page_number category_ins.name %}"
+                {% endif %}
                 class="{% if page_number == page_obj.number %}current-page{% endif %}"
                 >
                     {{page_number}}
