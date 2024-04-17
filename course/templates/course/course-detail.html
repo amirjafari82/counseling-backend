@@ -96,13 +96,7 @@
                     </div>
                     <div class="course-template-course-description-advice-text">
                         <ul>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است.</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است.</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است.</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است.</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است.</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است.</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است.</li>
+                            {{course.recommended|safe}}
                         </ul>
                     </div>
                 </div>
@@ -112,21 +106,27 @@
                 <div class="course-template-course-user-comment-title">
                     <h2>دیدگاه شرکت کنندگان در این دوره</h2>
                 </div>
-                <div class="course-template-course-user-comment-box">
-                    <div class="course-template-course-comment-username">
-                        <h3>نام کاربر</h3>
-                        <div class="course-template-course-comment-emoji">
+                {% for comment in comments %}
+                    <div class="course-template-course-user-comment-box">
+                        <div class="course-template-course-comment-username">
+                            <h3>{{comment.user.first_name}} {{comment.user.last_name}}</h3>
+                            <div class="course-template-course-comment-emoji">
 
+                            </div>
                         </div>
+                        <p>{{comment.body}}</p>
                     </div>
-                    <p>نظر کاربر لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است</p>
-                </div>
-                <div class="course-template-course-admin-comment-box">
-                    <div class="course-template-course-admin-comment-content">
-                        <h3>پاسخ پشتیبانی سایت</h3>
-                        <p>نظر پشتیبانی لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است</p>
-                    </div>
-                </div>
+                    {% if comment.answered %}
+                        <div class="course-template-course-admin-comment-box">
+                            <div class="course-template-course-admin-comment-content">
+                                <h3>پاسخ پشتیبانی سایت</h3>
+                                <p> {{comment.answer.answer}} </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <p>دیدگاهی ثبت نشده است!</p>
+                {% endfor %}
             </div>
 
             <div class="course-template-course-submit-comment-container">
@@ -211,6 +211,7 @@
                 </div>
                 <div class="course-template-course-comment-textarea">
                     <form id="course-comment-form" action="" method="post">
+                        {% csrf_token %}
                         <textarea placeholder="دیدگاه شما" id="course-comment-textarea"></textarea>
                         <input type="submit" value="ثبت دیدگاه">
                     </form>

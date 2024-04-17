@@ -4177,6 +4177,7 @@ label[for=rememberMe]:hover {
   border-radius: 16px;
   background-color: var(--lighterBlue-color);
   scale: 0.9;
+  margin-bottom: 20px;
 }
 .course-template-course-admin-comment-box h3{
   color: var(--Yellow-color);

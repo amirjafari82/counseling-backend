@@ -9,7 +9,7 @@ function menuOnClick() {
     document.getElementById("menu-bar").classList.toggle("burger-bg");
 }
 
-// swiper slider 
+// swiper slider
 
 const mySwiper = document.querySelector(".mySwiper");
 
@@ -133,6 +133,8 @@ if (togglePassword) {
     })
 }
 
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
+
 $(".alert").delay(5000).fadeOut('fast');
 
 const day = document.querySelectorAll("span.day");
@@ -231,4 +233,32 @@ if(month !== null) {
                 break;
         }
     });   
+}
+
+const comment_scores = document.querySelectorAll(".feedback label input")
+const form = document.querySelector("#course-comment-form")
+
+if (comment_scores) {
+    let val = null
+    comment_scores.forEach((score) => {
+        score.addEventListener("click", function() {
+            val = score.value
+        })
+    })
+    form.addEventListener('submit', e => {
+        const body = form.children[1].value
+        $.ajax({
+            type: 'POST',
+            url: window.location.pathname,
+            data: {
+                'csrfmiddlewaretoken': csrf[0].value,
+                'val': val,
+                'body': body,
+            },success : function(data) {
+                if(data['status'] == 'ok') {
+                    window.location.reload()
+                }
+            }
+        })
+    })
 }

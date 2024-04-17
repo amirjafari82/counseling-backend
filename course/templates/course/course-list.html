@@ -249,9 +249,9 @@
             <div class="pagination-number">
                 <a
                 {% if category_ins.active %}
-                    href="{% url 'course:course-list' page_number %}"
-                {% else %}
                     href="{% url 'course:course-filter' page_number category_ins.name %}"
+                {% else %}
+                    href="{% url 'course:course-list' page_number %}"
                 {% endif %}
                 class="{% if page_number == page_obj.number %}current-page{% endif %}"
                 >

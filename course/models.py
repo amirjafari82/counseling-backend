@@ -1,5 +1,7 @@
 from django.db import models
 from django_jalali.db import models as jmodels
+from django.core.validators import MaxValueValidator,MinValueValidator
+from accounts.models import User
 
 
 CATEGORY_CHOICES = (
@@ -44,4 +46,32 @@ class Course(models.Model):
     time = models.IntegerField(default=0)
     students = models.IntegerField(default=0)
     sessions = models.IntegerField(default=0)
+    recommended = models.TextField(default=None)
     created = jmodels.jDateTimeField(auto_now_add=True,blank=True,null=True)
+    
+    def __str__(self):
+        return self.title
+    
+    
+class CommentAnswer(models.Model):
+    answer = models.TextField(max_length=200)
+    
+    def __str__(self):
+        return self.answer
+    
+class Comment(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_comment')
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='course_comment')
+    body = models.TextField(max_length=200)
+    score = models.IntegerField(default=0,validators=
+        [
+            MaxValueValidator(5),
+            MinValueValidator(0)
+        ])
+    approved = models.BooleanField(default=False)
+    answer = models.ForeignKey(CommentAnswer,on_delete=models.CASCADE,related_name='comment_answer',blank=True,null=True)
+    answered = models.BooleanField(default=False)
+    created = jmodels.jDateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f'{self.user} - {self.body[:20]}'
